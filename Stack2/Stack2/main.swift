@@ -19,7 +19,7 @@ struct Stack {
 		if stack.isEmpty {
 			return -1
 		} else {
-			return stack.removeLast()
+			return Int(stack.popLast()!)
 		}
 	}
 	func size() -> Int {
@@ -55,8 +55,8 @@ for _ in 1...inputCommandCount {
 		print(stack.empty())
 	case "top":
 		print(stack.top())
-	default:
-		let startIndex = command.index(command.startIndex, offsetBy: 5)
+	default:	// push 일때
+		let startIndex = command.index(command.startIndex, offsetBy: 5)	// 시작 인덱스를 5로 -> 숫자가 시작하는 위치
 		let range = startIndex...
 		let num = Int(command[range])!
 		stack.push(num)
