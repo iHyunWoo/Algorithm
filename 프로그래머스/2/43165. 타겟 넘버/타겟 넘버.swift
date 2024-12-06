@@ -2,24 +2,20 @@ import Foundation
 
 func solution(_ numbers:[Int], _ target:Int) -> Int {
     var result = 0
-    
-    
-    func dfs(_ currentIndex: Int, _ sum: Int) {
-        // 현재가 마지막이라면
-        if currentIndex == numbers.count - 1 {
-            // target과 일치한다면 +1
-            if sum == target {
+     
+    func dfs(index: Int, sum: Int) {
+        if index == numbers.count {
+            if target == sum {
                 result += 1
             }
-            
-            return 
+            return
         }
         
-        dfs(currentIndex+1, sum + numbers[currentIndex+1])
-        dfs(currentIndex+1, sum - numbers[currentIndex+1])
+        dfs(index: index+1, sum: sum+numbers[index])
+        dfs(index: index+1, sum: sum-numbers[index])
     }
     
-    dfs(-1, 0)
+    dfs(index: 0, sum: 0)
     
     return result
 }
