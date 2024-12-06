@@ -1,14 +1,15 @@
 import Foundation
 
 func solution(_ n:Int, _ computers:[[Int]]) -> Int {
-    var visited: [Bool] = Array(repeating: false, count: computers.count)
     var count: Int = 0
+    var visited: [Bool] = Array(repeating: false, count: n)
     
-    func dfs(_ computer: Int) {
-        visited[computer] = true
+    func dfs(_ index: Int) {
+        let currentNetwork = computers[index]
         
         for i in 0..<n {
-            if computers[computer][i] == 1 && !visited[i] {
+            if currentNetwork[i] == 1 && !visited[i] {
+                visited[i] = true
                 dfs(i)
             }
         }
@@ -16,11 +17,11 @@ func solution(_ n:Int, _ computers:[[Int]]) -> Int {
     
     for i in 0..<n {
         if !visited[i] {
-            count += 1
+            visited[i] = true
             dfs(i)
+            count += 1
         }
     }
-    
     
     return count
 }
